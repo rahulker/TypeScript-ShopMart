@@ -1,13 +1,13 @@
 import { Outlet } from "react-router-dom";
-const api = import.meta.env.PRODUCT_BASE_API;
-console.log(api);
+import { Navigation } from "../exports";
 
-const Root = () => {
+const Page = () => {
   return (
     <>
+      <Navigation />
       <Outlet />
     </>
   );
 };
 
-export default Root;
+export default Page;

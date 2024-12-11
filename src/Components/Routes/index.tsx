@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import Root from "../../../layouts/root/page";
+import Root from "../../layouts/root/Page";
 import {
   BuyNow,
   Cart,
@@ -9,7 +9,7 @@ import {
   ProductDetail,
   SignUp,
   UserProfile,
-} from "../../../pages/exports";
+} from "../../Pages/exports";
 
 export const router = createBrowserRouter([
   {
