@@ -6,8 +6,8 @@ import { RxAvatar } from "react-icons/rx";
 import { useSelector } from "react-redux";
 import { rootState } from "../../store/store";
 const normalClass =
-  "font-light text-base text-sm hover:font-semibold transition-all ";
-const activeCss = "font-semibold text-sm";
+  "font-light text-base text-sm hover:font-bold drop-shadow-lg transition-all ";
+const activeCss = "font-semibold text-sm drop-shadow-lg";
 const Component = () => {
   const isLogin = useSelector((state: rootState) => state.user.isLogin);
   const totalItem = useSelector((state: rootState) => state.cart.totalItem);
@@ -15,7 +15,7 @@ const Component = () => {
     <>
       <Logo />
       {/* search */}
-      <div className="bg-[#F0F5FF] grid grid-cols-[5%_95%] items-center gap-4 px-4  lg:min-w-[400px]">
+      <div className="bg-[#F0F5FF] grid grid-cols-[5%_95%]  items-center gap-4 px-4  lg:min-w-[400px]">
         <CiSearch size={25} />
         <span className="border-l border-gray-300">
           <input

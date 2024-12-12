@@ -1,6 +1,6 @@
 export interface logInForm {
   email: string;
-  password: string | number;
+  password: string;
 }
 
 export interface signInForm extends logInForm {
@@ -8,5 +8,5 @@ export interface signInForm extends logInForm {
   phoneNum: number;
   name: string;
   id: number | string;
-  confirmPass: string | number;
+  confirmPassword: string | number;
 }

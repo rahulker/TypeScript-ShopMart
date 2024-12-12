@@ -11,9 +11,22 @@ export async function allProduct() {
   }
 }
 
-export async function handleSingleProduct(id: number) {
+export async function handleSingleProduct(id: string | undefined) {
   try {
+    if (id == undefined) {
+      return;
+    }
     const response = await axios.get(PRODUCT_API + "/" + id);
+    return response.data;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    console.error(error.message);
+  }
+}
+
+export async function handleCategory() {
+  try {
+    const response = await axios.get(PRODUCT_API + "/categories");
     return response.data;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {

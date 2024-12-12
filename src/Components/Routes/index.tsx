@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import Root from "../../layouts/root/Page";
+import { Root } from "../../layouts/exports";
 import {
   BuyNow,
   Cart,
@@ -9,12 +9,15 @@ import {
   ProductDetail,
   SignUp,
   UserProfile,
-} from "../../Pages/exports";
+} from "../../pages/exports";
+import { allProduct } from "../../utils/apis/services/product";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    loader: () => allProduct(),
+    id: "Root",
     children: [
       {
         index: true,
@@ -22,9 +25,13 @@ export const router = createBrowserRouter([
       },
       {
         path: "/product",
-        element: <Product />,
         children: [
           {
+            index: true,
+            element: <Product />,
+          },
+          {
+            index: false,
             path: "/product/:id",
             element: <ProductDetail />,
           },
