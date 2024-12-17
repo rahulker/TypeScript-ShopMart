@@ -29,3 +29,9 @@
   line-clamp: 2;
   display: -webkit-box;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

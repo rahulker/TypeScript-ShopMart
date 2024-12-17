@@ -15,6 +15,7 @@ export const user = createSlice({
     },
     handleLogOut: (state) => {
       state.isLogin = false;
+      state.userDetail = {};
     },
     handleAddUserDetail: (state, action) => {
       state.userDetail = action.payload;
@@ -22,6 +23,6 @@ export const user = createSlice({
   },
 });
 
-export const { handleLogIn, handleLogOut } = user.actions;
+export const { handleLogIn, handleLogOut, handleAddUserDetail } = user.actions;
 const userReducer = user.reducer;
 export default userReducer;

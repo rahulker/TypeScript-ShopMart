@@ -14,6 +14,7 @@ export interface props {
 export interface inputAndLabel {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   register?: any;
+  placeHolder: string;
   errorMessage?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>, name: string) => void;
   text?: string;

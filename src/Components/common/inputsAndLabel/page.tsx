@@ -10,20 +10,23 @@ const Page = ({
   classCss = "",
   register,
   errorMessage,
+  placeHolder = "",
   type,
 }: inputAndLabel) => {
   const [showPass, setShowPass] = useState<boolean>(false);
+  const commonCss = "p-2 border-black  border mt-1 w-full rounded-md";
   return (
     <div className="flex flex-col items-start gap-0.5">
       <label className={textStyle} htmlFor={name}>
         {text}
       </label>
       {isPassword ? (
-        <div className={`${classCss} flex items-center`}>
+        <div className={`${classCss} ${commonCss} flex items-center`}>
           <input
             {...(register ? register(name || "") : {})}
             className="w-[90%] focus:border-none focus:outline-none"
             name={name}
+            placeholder={placeHolder}
             id={name}
             type={showPass ? "text" : type}
           />
@@ -41,10 +44,11 @@ const Page = ({
         </div>
       ) : (
         <input
-          {...(register ? register(name || "") : {})} // Use register for useForm
-          className={classCss}
+          {...(register ? register(name || "") : {})}
+          className={[classCss, commonCss].join(" ")}
           name={name}
           id={name}
+          placeholder={placeHolder}
           type={type}
         />
       )}

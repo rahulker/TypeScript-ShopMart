@@ -9,8 +9,11 @@ export const signUpValidation = object({
     .matches(/[A-Z]/, "Password must contain at least one uppercase letter"),
   name: string().required("Please enter your name"),
   phoneNum: number()
-    .required("Phone number is require")
-    .min(10, "Please enter a 10 digit number"),
+    .typeError("Phone number must be a valid number")
+    .required("Phone number is required")
+    .test("len", "Phone number must be exactly 10 digits", (value) => {
+      return !!value && value.toString().length === 10;
+    }),
   confirmPassword: string()
     .required("confirm password is require")
     .oneOf([ref("password")], "Confirm password dose not match"),

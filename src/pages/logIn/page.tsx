@@ -4,8 +4,22 @@ import { useForm } from "react-hook-form";
 import { Button, InputAndLabel } from "../../Components/exports";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { logInValidation } from "../../utils/validationSchema/signInSchema";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { userAlreadyExists } from "../../utils/helper/userLogin";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { rootState } from "../../store/store";
+
 const Page = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [userExits, setUserExits] = useState<boolean>(false);
+  const isLogin = useSelector((state: rootState) => state.user.isLogin);
+  useEffect(() => {
+    if (isLogin) {
+      navigate("/");
+    }
+  });
   const {
     register,
     handleSubmit,
@@ -18,9 +32,10 @@ const Page = () => {
     },
     resolver: yupResolver(logInValidation),
   });
-  function onSubmit() {
+  async function onSubmit() {
     const userData = getValues();
-    console.log(userData);
+    const res = await userAlreadyExists(userData, dispatch, navigate);
+    setUserExits(res);
   }
   return (
     <section className="mx-20 my-10">
@@ -31,17 +46,19 @@ const Page = () => {
         <div className="mt-5 lg:min-w-[380px]">
           <form onSubmit={handleSubmit(onSubmit)} method="post">
             <InputAndLabel
-              classCss="p-2 border-black  focus:outline-none border mt-1 w-full rounded-md"
+              classCss="focus:outline-none "
+              placeHolder="Enter your email"
               name="email"
               text="Email"
               type="Email"
               register={register}
               errorMessage={errors.email?.message}
             />
+            {userExits && <p>Account not found, please try to sign up</p>}
             <InputAndLabel
-              classCss="p-2 border-black  border mt-1 w-full rounded-md"
               name="password"
               textStyle="mt-4"
+              placeHolder="*********"
               type="Password"
               register={register}
               errorMessage={errors.password?.message}
