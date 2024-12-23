@@ -9,16 +9,17 @@ const reducer = combineReducers({
   user: userReducer,
 });
 
+const key = "user and cart detail";
+
 const persistConfig = {
-  key: "persits-store",
+  key,
   storage,
 };
 
-const persitedReducer = persistReducer(persistConfig, reducer);
+const persistedReducer = persistReducer(persistConfig, reducer);
 
 const store = configureStore({
-  reducer: persitedReducer,
-  devTools: window.__REDUX_DEVTOOLS_EXTENSION__ !== undefined,
+  reducer: persistedReducer,
 });
 export const persisedStore = persistStore(store);
 

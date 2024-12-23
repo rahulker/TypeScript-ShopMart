@@ -4,28 +4,43 @@ import { handleSingleProduct } from "../../utils/apis/services/product";
 import { Button, Card } from "../../Components/exports";
 import { useDispatch } from "react-redux";
 import { handleAddItem } from "../../store/slices/cartSlice";
-
+import { successToast } from "../../utils/helper/toast";
 const Page = () => {
   const originalData = useRouteLoaderData("Root");
   const dispatch = useDispatch();
-  const shuffleData = [...originalData].sort(() => Math.random() - 0.5);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [shuffleData, setShuffleData] = useState<unknown[]>([]);
   const { id } = useParams();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [data, setData] = useState<any>({});
+
+  useEffect(() => {
+    const filteredData = [...originalData]
+      .filter((item) => item.id != id && item.title != data?.title)
+      .sort(() => Math.random() - 0.5);
+    setShuffleData(filteredData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [originalData, id]);
+
   useEffect(() => {
     async function getSingleProduct() {
+      setIsLoading(true);
       const res = await handleSingleProduct(id);
       setData(res);
+      setIsLoading(false);
     }
     getSingleProduct();
   }, [id]);
+
   function handleAddToCart() {
+    successToast("Item added to cart");
     dispatch(handleAddItem(data));
   }
+
   return (
     <section className="mx-20 my-10">
-      {Object.keys(data).length <= 0 ? (
-        <p className="text-center">Loading data</p>
+      {isLoading ? (
+        <p className="text-center">Loading data.....</p>
       ) : (
         <div className="grid xl:grid-cols-[20%_40%] lg:grid-cols-[20%_60%] grid-cols-1 lg:gap-14 gap-4 items-center justify-center">
           <div>
@@ -54,12 +69,13 @@ const Page = () => {
           </div>
         </div>
       )}
+
       <div className="mt-5">
         <h2 className="text-2xl font-bold ">Similar product</h2>
         <div className="mt-4 grid grid-cols-4 gap-4">
           {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            shuffleData.slice(0, 4).map((item: any) => (
+            shuffleData?.slice(0, 4).map((item: any) => (
               <Card item={item} key={item.id} />
             ))
           }

@@ -5,6 +5,7 @@ import { cartData, productData } from "../../utils/interfaces/cart";
 const initialState: cartSlice = {
   totalItem: 0,
   item: [],
+  buyNow: {},
 };
 
 export const cart = createSlice({
@@ -51,6 +52,14 @@ export const cart = createSlice({
         (total: number, item: productData) => total + item.quantity,
         0
       );
+    },
+    handleCartBuyNow: (state, action) => {
+      state.buyNow = {
+        ...action.payload,
+      };
+    },
+    handleBuyNowCart: (state) => {
+      state.buyNow = state.item;
     },
   },
 });

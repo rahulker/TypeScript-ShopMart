@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
-import { signInForm } from "../../interfaces/form";
+import { signInForm } from "../interfaces/form";
 const url = import.meta.env.VITE_USER_BASE_API;
 const USER_DB = url + ".json";
 

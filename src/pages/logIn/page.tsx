@@ -34,8 +34,8 @@ const Page = () => {
   });
   async function onSubmit() {
     const userData = getValues();
-    const res = await userAlreadyExists(userData, dispatch, navigate);
-    setUserExits(res);
+    const res = await userAlreadyExists("Login", userData, dispatch, navigate);
+    setUserExits(res || false);
   }
   return (
     <section className="mx-20 my-10">
@@ -54,7 +54,11 @@ const Page = () => {
               register={register}
               errorMessage={errors.email?.message}
             />
-            {userExits && <p>Account not found, please try to sign up</p>}
+            {userExits && (
+              <p className="text-red-400">
+                Account not found, please try to sign up
+              </p>
+            )}
             <InputAndLabel
               name="password"
               textStyle="mt-4"

@@ -19,12 +19,14 @@ const Page = () => {
     getCategory();
     return () => {};
   }, []);
+
   if (category.categoryAll != "All") {
     newData = data.filter(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (item: any) => item.category === category.categoryAll
     );
   }
+
   function handleSelectNewCategory(e: ChangeEvent<HTMLSelectElement>) {
     setCategory((state) => ({ ...state, categoryAll: e.target.value }));
   }
@@ -45,9 +47,9 @@ const Page = () => {
       <div className="mt-4 grid grid-cols-4 grid-rows-2 gap-4">
         {newData.length > 0
           ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            newData.map((item: any) => <Card item={item} key={item.id} />)
+            newData?.map((item: any) => <Card item={item} key={item.id} />)
           : // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            data.map((item: any) => <Card item={item} key={item.id} />)}
+            data?.map((item: any) => <Card item={item} key={item.id} />)}
       </div>
     </section>
   );

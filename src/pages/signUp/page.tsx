@@ -5,16 +5,18 @@ import { signInForm } from "../../utils/interfaces/form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signUpValidation } from "../../utils/validationSchema/signUpSchema";
 import { NavLink, useNavigate } from "react-router-dom";
-import { handleRegisterUser } from "../../utils/apis/services/user";
+import { handleRegisterUser } from "../../utils/apis/user";
 import { useDispatch, useSelector } from "react-redux";
 import { handleLogIn } from "../../store/slices/userSlice";
 import { rootState } from "../../store/store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { userAlreadyExists } from "../../utils/helper/userLogin";
 
 const Page = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isLogin = useSelector((state: rootState) => state.user.isLogin);
+  const [userExits, setUserExits] = useState(false);
   useEffect(() => {
     if (isLogin) {
       navigate("/");
@@ -36,12 +38,18 @@ const Page = () => {
     },
     resolver: yupResolver(signUpValidation),
   });
-  function onsubmit() {
+  async function onsubmit() {
+    setUserExits(false);
     const userDetail = getValues();
     userDetail.id = Math.random() * 100;
-    handleRegisterUser(userDetail);
-    dispatch(handleLogIn());
-    navigate("/");
+    const res = await userAlreadyExists("", userDetail, dispatch, navigate);
+    if (res) {
+      handleRegisterUser(userDetail);
+      dispatch(handleLogIn());
+      navigate("/");
+    } else {
+      setUserExits(true);
+    }
   }
   return (
     <section className="mx-20 my-10">
@@ -61,15 +69,22 @@ const Page = () => {
                 errorMessage={errors.name?.message}
                 classCss="focus:outline-none w-full"
               />
-              <InputAndLabel
-                text="Email"
-                placeHolder="Enter your email"
-                name="email"
-                register={register}
-                errorMessage={errors.email?.message}
-                type="email"
-                classCss="focus:outline-none w-full"
-              />
+              <div>
+                <InputAndLabel
+                  text="Email"
+                  placeHolder="Enter your email"
+                  name="email"
+                  register={register}
+                  errorMessage={errors.email?.message}
+                  type="email"
+                  classCss="focus:outline-none w-full"
+                />
+                {userExits && (
+                  <p className="text-sm text-red-400 mt-1.5">
+                    Email already in use
+                  </p>
+                )}
+              </div>
             </div>
             <div className="mt-2">
               <InputAndLabel
@@ -126,7 +141,7 @@ const Page = () => {
             <p>
               Already have an account?{" "}
               <NavLink to="/login" className="text-blue-500 underline">
-                LogIn
+                signIn
               </NavLink>
             </p>
           </div>

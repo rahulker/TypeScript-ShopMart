@@ -1,28 +1,36 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Dispatch } from "@reduxjs/toolkit";
 import { handleAddUserDetail, handleLogIn } from "../../store/slices/userSlice";
-import { handleGetAllUser } from "../apis/services/user";
+import { handleGetAllUser } from "../apis/user";
 import { logInForm } from "../interfaces/form";
 
 export async function userAlreadyExists(
+  page: string,
   userDetail: logInForm,
   dispatch: Dispatch,
   navigate: any
 ) {
   const response = await handleGetAllUser();
-  const keyArr = response != null ? Object.values(response) : 0;
-  const currentUser =
-    keyArr === 0
-      ? ""
-      : keyArr.reduce(
-          (data: any, item: any) => (data = item.email === userDetail.email)
-        );
-  if (currentUser != "") {
-    dispatch(handleAddUserDetail(userDetail));
-    dispatch(handleLogIn());
-    navigate("/");
-    return false;
+  const keyArr = Object.values(response) || "";
+  const currentUser = keyArr.some(
+    (item: any) => item.email === userDetail.email
+  );
+  console.log(currentUser);
+
+  if (page == "Login") {
+    if (currentUser) {
+      dispatch(handleAddUserDetail(userDetail));
+      dispatch(handleLogIn());
+      navigate("/");
+      return false;
+    } else {
+      return true;
+    }
   } else {
-    return true;
+    if (currentUser) {
+      return false;
+    } else {
+      return true;
+    }
   }
 }

@@ -1,6 +1,7 @@
 export interface cartSlice {
   totalItem: number;
   item: object[];
+  buyNow: object | object[];
 }
 
 export interface userSlice {
