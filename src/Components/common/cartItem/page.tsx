@@ -1,15 +1,18 @@
 import { useDispatch } from "react-redux";
 import { Button } from "../../exports";
 import { handleAddItem, handleRmvItem } from "../../../store/slices/cartSlice";
+import { successToast } from "../../../utils/helper/toast";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Page = ({ item }: any) => {
   const dispatch = useDispatch();
   function handleAddQuantity() {
     dispatch(handleAddItem(item));
+    successToast("Cart updated successfully");
   }
   function handleRmvQuantity() {
     dispatch(handleRmvItem(item));
+    successToast("Cart updated successfully");
   }
   return (
     <div className="grid grid-cols-3  justify-between gap-10 items-center px-4 py-5 border border-black rounded-lg">

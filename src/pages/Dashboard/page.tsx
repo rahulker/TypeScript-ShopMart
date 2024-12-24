@@ -6,7 +6,7 @@ const Page = () => {
   const data = useRouteLoaderData("Root");
   const shuffle = [...data].sort(() => Math.random() - 0.5);
   return (
-    <section className="mx-20 my-10">
+    <>
       <div className="flex justify-between items-center">
         <h2 className="font-bold text-2xl">Feature Product</h2>
         <NavLink
@@ -25,7 +25,7 @@ const Page = () => {
             <Card item={item} key={item.id} />
           ))}
       </div>
-    </section>
+    </>
   );
 };
 

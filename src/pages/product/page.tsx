@@ -32,7 +32,7 @@ const Page = () => {
   }
 
   return (
-    <section className="mx-20 my-10">
+    <>
       <div className="flex items-center justify-between">
         <h2 className="text-3xl font-bold">Product</h2>
         <div className="border px-2 gap-2 py-2 border-black rounded-lg md:w-auto flex items-center w-fit">
@@ -51,7 +51,7 @@ const Page = () => {
           : // eslint-disable-next-line @typescript-eslint/no-explicit-any
             data?.map((item: any) => <Card item={item} key={item.id} />)}
       </div>
-    </section>
+    </>
   );
 };
 

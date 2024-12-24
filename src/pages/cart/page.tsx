@@ -10,7 +10,7 @@ const Page = () => {
     0
   );
   return (
-    <section className="mx-20 my-10">
+    <>
       <h2 className="text-4xl font-bold capitalize">your cart</h2>
       <div className="mt-8">
         {cartData.length <= 0 ? (
@@ -32,7 +32,7 @@ const Page = () => {
           </>
         )}
       </div>
-    </section>
+    </>
   );
 };
 
