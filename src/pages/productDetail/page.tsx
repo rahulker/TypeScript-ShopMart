@@ -8,6 +8,7 @@ import { successToast } from "../../utils/helper/toast";
 const Page = () => {
   const originalData = useRouteLoaderData("Root");
   const dispatch = useDispatch();
+  const [readMore, setReadMore] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [shuffleData, setShuffleData] = useState<unknown[]>([]);
   const { id } = useParams();
@@ -31,6 +32,9 @@ const Page = () => {
     }
     getSingleProduct();
   }, [id]);
+  function handleReadMore() {
+    setReadMore((state) => !state);
+  }
 
   function handleAddToCart() {
     successToast("Item added to cart");
@@ -56,11 +60,20 @@ const Page = () => {
               <p className="md:text-xl">Category: {data?.category}</p>
               <p className="md:text-xl">price: ${data?.price}</p>
             </div>
-            <div className="mt-5">
-              <p className="md:text-base text-sm text-left w-auto ">
-                {data?.description ||
-                  "There is no description about this product"}
+            <div className="mt-5 flex flex-col items-start">
+              <p
+                className={` ${
+                  readMore ? "des" : ""
+                } md:text-base text-sm text-left w-auto `}
+              >
+                {readMore
+                  ? data?.description + ".. "
+                  : data?.description ||
+                    "There is no description about this product"}
               </p>
+              <span className="cursor-pointer" onClick={handleReadMore}>
+                {readMore ? "read more" : "read less"}
+              </span>
             </div>
             <div className="lg:mt-10 mt-4 flex items-center gap-4">
               <Button text="Add to cart" onClick={() => handleAddToCart()} />
