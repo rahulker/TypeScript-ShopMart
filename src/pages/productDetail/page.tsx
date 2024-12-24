@@ -38,7 +38,7 @@ const Page = () => {
   }
 
   return (
-    <section className="mx-20 my-10">
+    <>
       {isLoading ? (
         <p className="text-center">Loading data.....</p>
       ) : (
@@ -81,7 +81,7 @@ const Page = () => {
           }
         </div>
       </div>
-    </section>
+    </>
   );
 };
 

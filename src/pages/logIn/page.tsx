@@ -38,7 +38,7 @@ const Page = () => {
     setUserExits(res || false);
   }
   return (
-    <section className="mx-20 my-10">
+    <>
       <div className="flex flex-col items-center ">
         <RxAvatar size={60} />
         <h2 className="mt-2 text-2xl font-bold">Welcome back to Shop Mart</h2>
@@ -81,7 +81,7 @@ const Page = () => {
           </p>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 

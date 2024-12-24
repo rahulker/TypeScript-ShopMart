@@ -31,7 +31,9 @@ const Page = () => {
         }}
       />
       <Navigation />
-      <Outlet />
+      <section className="mx-20 my-10">
+        <Outlet />
+      </section>
     </>
   );
 };
