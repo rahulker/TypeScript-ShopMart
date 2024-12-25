@@ -3,9 +3,9 @@ import { Button } from "../../exports";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Page = ({ item }: any) => {
   return (
-    <div className="flex flex-col gap-4 shadow-lg px-2 py-3 border border-black rounded-lg justify-evenly">
+    <div className="flex flex-col gap-4 shadow-lg px-2 py-3 border border-black rounded-lg justify-between  ">
       <img
-        src={item.image}
+        src={item.images[0]}
         alt={item.title}
         className="mx-auto  w-[200px] h-[200px] object-contain"
       />
@@ -13,11 +13,11 @@ const Page = ({ item }: any) => {
         <h2 className="md:text-xl w-[260px] sm:w-auto text-lg des leading-[30px]">
           {item.title}
         </h2>
-        <p className="des text-sm w-[260px] sm:w-auto mt-2 leading-[18px]">
+        <p className="des text-sm w-[260px] des sm:w-auto mt-2 leading-[18px]">
           {item.description}
         </p>
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-start flex-col gap-2.5">
         <div>
           <p className="text-sm leading-3">Price: ${item.price}</p>
         </div>

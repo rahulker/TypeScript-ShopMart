@@ -1,4 +1,7 @@
 export interface categoryType {
-  categoryAll: string;
-  gotCategory: string[];
+  categoryAll: {
+    label: string;
+    slugValue: string | null;
+  };
+  gotCategory: object[];
 }

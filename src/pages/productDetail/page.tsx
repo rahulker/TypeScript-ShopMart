@@ -16,7 +16,7 @@ const Page = () => {
   const [data, setData] = useState<any>({});
 
   useEffect(() => {
-    const filteredData = [...originalData]
+    const filteredData = [...originalData.products]
       .filter((item) => item.id != id && item.title != data?.title)
       .sort(() => Math.random() - 0.5);
     setShuffleData(filteredData);
@@ -49,7 +49,7 @@ const Page = () => {
         <div className="grid xl:grid-cols-[20%_40%] lg:grid-cols-[20%_60%] grid-cols-1 lg:gap-14 gap-4 items-center justify-center">
           <div>
             <img
-              src={data?.image}
+              src={data?.images[0]}
               alt={data?.title}
               className="w-1/2 sm:w-[40%] mx-auto lg:w-auto"
             />
@@ -61,19 +61,9 @@ const Page = () => {
               <p className="md:text-xl">price: ${data?.price}</p>
             </div>
             <div className="mt-5 flex flex-col items-start">
-              <p
-                className={` ${
-                  readMore ? "des" : ""
-                } md:text-base text-sm text-left w-auto `}
-              >
-                {readMore
-                  ? data?.description + ".. "
-                  : data?.description ||
-                    "There is no description about this product"}
+              <p className={`md:text-base text-sm text-left w-auto `}>
+                {data?.description}
               </p>
-              <span className="cursor-pointer" onClick={handleReadMore}>
-                {readMore ? "read more" : "read less"}
-              </span>
             </div>
             <div className="lg:mt-10 mt-4 flex items-center gap-4">
               <Button text="Add to cart" onClick={() => handleAddToCart()} />

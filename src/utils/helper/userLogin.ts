@@ -12,14 +12,13 @@ export async function userAlreadyExists(
 ) {
   const response = await handleGetAllUser();
   const keyArr = Object.values(response) || "";
-  const currentUser = keyArr.some(
+  const currentUser = keyArr.filter(
     (item: any) => item.email === userDetail.email
   );
-  console.log(currentUser);
 
   if (page == "Login") {
     if (currentUser) {
-      dispatch(handleAddUserDetail(userDetail));
+      dispatch(handleAddUserDetail(currentUser[0]));
       dispatch(handleLogIn());
       navigate("/");
       return false;

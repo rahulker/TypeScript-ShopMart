@@ -57,7 +57,7 @@ const Component = () => {
           >
             Log out
           </button>
-          <NavLink to="/user" className="flex items-center gap-2">
+          <NavLink to="/user-profile" className="flex items-center gap-2">
             <RxAvatar size={25} />
           </NavLink>
         </div>

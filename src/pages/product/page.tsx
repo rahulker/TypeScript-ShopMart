@@ -8,9 +8,13 @@ const Page = () => {
   let newData = [];
   const data = useRouteLoaderData("Root");
   const [category, setCategory] = useState<categoryType>({
-    categoryAll: "All",
+    categoryAll: {
+      label: "All",
+      slugValue: null,
+    },
     gotCategory: [],
   });
+
   useEffect(() => {
     async function getCategory() {
       const data = await handleCategory();
@@ -20,15 +24,24 @@ const Page = () => {
     return () => {};
   }, []);
 
-  if (category.categoryAll != "All") {
-    newData = data.filter(
+  if (category.categoryAll.label != "All") {
+    newData = data.products.filter(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (item: any) => item.category === category.categoryAll
+      (item: any) => item.category === category.categoryAll.slugValue
     );
   }
 
   function handleSelectNewCategory(e: ChangeEvent<HTMLSelectElement>) {
-    setCategory((state) => ({ ...state, categoryAll: e.target.value }));
+    const selectedValue: object | string =
+      category.gotCategory.find(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (item: any) => item.name === e.target.value
+      ) || "";
+    const slugVal = selectedValue ? selectedValue.slug : null;
+    setCategory((state) => ({
+      ...state,
+      categoryAll: { label: e.target.value, slugValue: slugVal },
+    }));
   }
 
   return (
@@ -36,11 +49,17 @@ const Page = () => {
       <div className="flex items-center justify-between">
         <h2 className="text-3xl font-bold">Product</h2>
         <div className="border px-2 gap-2 py-2 border-black rounded-lg md:w-auto flex items-center w-fit">
-          <select className="w-full" onChange={handleSelectNewCategory}>
+          <select
+            className="w-full"
+            onChange={(e) => handleSelectNewCategory(e)}
+          >
             <option>All</option>
-            {category.gotCategory.map((item: string | number) => (
-              <option key={item}>{item}</option>
-            ))}
+            {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              category.gotCategory.map((item: string | number | any) => (
+                <option key={item.name}>{item.name}</option>
+              ))
+            }
           </select>
         </div>
       </div>
@@ -49,7 +68,9 @@ const Page = () => {
           ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
             newData?.map((item: any) => <Card item={item} key={item.id} />)
           : // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            data?.map((item: any) => <Card item={item} key={item.id} />)}
+            data?.products.map((item: any) => (
+              <Card item={item} key={item.id} />
+            ))}
       </div>
     </>
   );

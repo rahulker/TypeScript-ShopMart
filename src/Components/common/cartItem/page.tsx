@@ -19,7 +19,7 @@ const Page = ({ item }: any) => {
       {/* image */}
       <div className="w-fit">
         <img
-          src={item.image}
+          src={item.images[0]}
           alt={item.title}
           className="md:w-40 md:h-40 object-contain sm:w-1/4 w-1/2 mx-auto"
         />
