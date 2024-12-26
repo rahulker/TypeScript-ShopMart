@@ -17,11 +17,13 @@ const Page = () => {
   const navigate = useNavigate();
   const isLogin = useSelector((state: rootState) => state.user.isLogin);
   const [userExits, setUserExits] = useState(false);
+
   useEffect(() => {
     if (isLogin) {
       navigate("/");
     }
   });
+
   const {
     getValues,
     formState: { errors },
@@ -38,10 +40,11 @@ const Page = () => {
     },
     resolver: yupResolver(signUpValidation),
   });
+
   async function onsubmit() {
     setUserExits(false);
     const userDetail = getValues();
-    userDetail.id = Math.random() * 100;
+    userDetail.id = Math.ceil(Math.random() * 100);
     const res = await userAlreadyExists("", userDetail, dispatch, navigate);
     if (res) {
       handleRegisterUser(userDetail);
