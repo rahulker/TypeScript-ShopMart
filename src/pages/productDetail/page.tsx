@@ -16,7 +16,7 @@ const Page = () => {
   const [data, setData] = useState<any>({});
 
   useEffect(() => {
-    const filteredData = [...originalData.products]
+    const filteredData = [...originalData]
       .filter((item) => item.id != id && item.title != data?.title)
       .sort(() => Math.random() - 0.5);
     setShuffleData(filteredData);
@@ -49,7 +49,7 @@ const Page = () => {
         <div className="grid xl:grid-cols-[20%_40%] lg:grid-cols-[20%_60%] grid-cols-1 lg:gap-14 gap-4 items-center justify-center">
           <div>
             <img
-              src={data?.images[0]}
+              src={data?.image}
               alt={data?.title}
               className="w-1/2 sm:w-[40%] mx-auto lg:w-auto"
             />

@@ -25,7 +25,7 @@ const Page = () => {
   }, []);
 
   if (category.categoryAll.label != "All") {
-    newData = data.products.filter(
+    newData = data.filter(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (item: any) => item.category === category.categoryAll.slugValue
     );
@@ -68,9 +68,7 @@ const Page = () => {
           ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
             newData?.map((item: any) => <Card item={item} key={item.id} />)
           : // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            data?.products.map((item: any) => (
-              <Card item={item} key={item.id} />
-            ))}
+            data?.map((item: any) => <Card item={item} key={item.id} />)}
       </div>
     </>
   );

@@ -9,6 +9,7 @@ const Page = () => {
     (total: number, item: any) => (total = item.price * item.quantity),
     0
   );
+
   return (
     <>
       <h2 className="text-4xl font-bold capitalize">your cart</h2>

@@ -5,7 +5,7 @@ const Page = ({ item }: any) => {
   return (
     <div className="flex flex-col gap-4 shadow-lg px-2 py-3 border border-black rounded-lg justify-between  ">
       <img
-        src={item.images[0]}
+        src={item.image}
         alt={item.title}
         className="mx-auto  w-[200px] h-[200px] object-contain"
       />

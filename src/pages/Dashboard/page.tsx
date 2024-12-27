@@ -4,7 +4,7 @@ import { Card } from "../../Components/exports";
 
 const Page = () => {
   const data = useRouteLoaderData("Root");
-  const shuffle = [...data.products].sort(() => Math.random() - 0.5);
+  const shuffle = [...data].sort(() => Math.random() - 0.5);
   return (
     <>
       <div className="flex justify-between items-center">

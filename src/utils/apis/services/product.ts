@@ -3,7 +3,7 @@ import axios from "axios";
 
 export async function allProduct() {
   try {
-    const response = await axios.get(PRODUCT_API + "?limit=50");
+    const response = await axios.get(PRODUCT_API);
     return response.data;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
