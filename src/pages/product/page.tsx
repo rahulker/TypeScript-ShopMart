@@ -8,39 +8,30 @@ const Page = () => {
   let newData = [];
   const data = useRouteLoaderData("Root");
   const [category, setCategory] = useState<categoryType>({
-    categoryAll: {
-      label: "All",
-      slugValue: null,
-    },
+    categoryAll: "All",
     gotCategory: [],
   });
 
   useEffect(() => {
     async function getCategory() {
-      const data = await handleCategory();
-      setCategory((state) => ({ ...state, gotCategory: data }));
+      const newData = await handleCategory();
+      setCategory((state) => ({ ...state, gotCategory: newData }));
     }
     getCategory();
     return () => {};
   }, []);
 
-  if (category.categoryAll.label != "All") {
+  if (category.categoryAll != "All") {
     newData = data.filter(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (item: any) => item.category === category.categoryAll.slugValue
+      (item: any) => item.category === category.categoryAll
     );
   }
 
   function handleSelectNewCategory(e: ChangeEvent<HTMLSelectElement>) {
-    const selectedValue: object | string =
-      category.gotCategory.find(
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (item: any) => item.name === e.target.value
-      ) || "";
-    const slugVal = selectedValue ? selectedValue.slug : null;
     setCategory((state) => ({
       ...state,
-      categoryAll: { label: e.target.value, slugValue: slugVal },
+      categoryAll: e.target.value,
     }));
   }
 
@@ -54,12 +45,9 @@ const Page = () => {
             onChange={(e) => handleSelectNewCategory(e)}
           >
             <option>All</option>
-            {
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              category.gotCategory.map((item: string | number | any) => (
-                <option key={item.name}>{item.name}</option>
-              ))
-            }
+            {category.gotCategory.map((item: string) => (
+              <option key={item}>{item}</option>
+            ))}
           </select>
         </div>
       </div>
