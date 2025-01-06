@@ -12,6 +12,6 @@ export interface userSlice {
     password?: string | number;
     address?: string;
     email?: string;
-    phoneNum?: number;
+    phoneNum?: number ;
   };
 }
