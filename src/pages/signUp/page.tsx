@@ -1,13 +1,13 @@
 import { RxAvatar } from "react-icons/rx";
 import { Button, InputAndLabel } from "../../Components/exports";
 import { useForm } from "react-hook-form";
-import { signInForm } from "../../utils/interfaces/form";
+import { signUpForm } from "../../utils/interfaces/form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signUpValidation } from "../../utils/validationSchema/signUpSchema";
 import { NavLink, useNavigate } from "react-router-dom";
 import { handleRegisterUser } from "../../utils/apis/user";
 import { useDispatch, useSelector } from "react-redux";
-import { handleLogIn } from "../../store/slices/userSlice";
+import { handleAddUserDetail, handleLogIn } from "../../store/slices/userSlice";
 import { rootState } from "../../store/store";
 import { useEffect, useState } from "react";
 import { userAlreadyExists } from "../../utils/helper/userLogin";
@@ -29,7 +29,7 @@ const Page = () => {
     formState: { errors },
     handleSubmit,
     register,
-  } = useForm<signInForm>({
+  } = useForm<signUpForm>({
     defaultValues: {
       address: "",
       confirmPassword: "",
@@ -48,6 +48,7 @@ const Page = () => {
     const res = await userAlreadyExists("", userDetail, dispatch, navigate);
     if (res) {
       handleRegisterUser(userDetail);
+      dispatch(handleAddUserDetail(userDetail));
       dispatch(handleLogIn());
       navigate("/");
     } else {
@@ -58,11 +59,13 @@ const Page = () => {
     <>
       <div className="flex flex-col items-center ">
         <RxAvatar size={60} />
-        <h2 className="mt-2 text-2xl font-bold">Welcome back to Shop Mart</h2>
+        <h2 className="mt-2 md:text-2xl sm:text-xl text-base font-bold">
+          Welcome back to Shop Mart
+        </h2>
         <p className="mt-1 text-sm">Sign up to create a account</p>
-        <div className="mt-5 lg:min-w-[450px]">
+        <div className="mt-5 sm:min-w-[450px] w-full sm:w-auto">
           <form onSubmit={handleSubmit(onsubmit)}>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <InputAndLabel
                 text="Name"
                 placeHolder="Enter your name"
@@ -138,7 +141,7 @@ const Page = () => {
                 </p>
               )}
             </div>
-            <Button text="Sign up" classCss="w-full mt-2" />
+            <Button type="submit" text="Sign up" classCss="w-full mt-2" />
           </form>
           <div className="text-center mt-5">
             <p>

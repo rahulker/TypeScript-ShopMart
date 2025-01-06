@@ -37,9 +37,11 @@ const Page = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-bold">Product</h2>
-        <div className="border px-2 gap-2 py-2 border-black rounded-lg md:w-auto flex items-center w-fit">
+      <div className="flex flex-col sm:flex-row gap-2.5  sm:items-center sm:justify-between">
+        <h2 className="lg:text-3xl sm:text-xl text-base md:text-2xl font-bold">
+          Product
+        </h2>
+        <div className="border px-2 gap-2  py-2 border-black rounded-lg md:w-auto flex items-center w-fit">
           <select
             className="w-full"
             onChange={(e) => handleSelectNewCategory(e)}
@@ -51,7 +53,7 @@ const Page = () => {
           </select>
         </div>
       </div>
-      <div className="mt-4 grid grid-cols-4 grid-rows-2 gap-4">
+      <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {newData.length > 0
           ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
             newData?.map((item: any) => <Card item={item} key={item.id} />)

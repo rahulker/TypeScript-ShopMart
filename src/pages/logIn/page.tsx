@@ -41,9 +41,11 @@ const Page = () => {
     <>
       <div className="flex flex-col items-center ">
         <RxAvatar size={60} />
-        <h2 className="mt-2 text-2xl font-bold">Welcome back to Shop Mart</h2>
+        <h2 className="mt-2 md:text-2xl sm:text-xl text-base font-bold">
+          Welcome back to Shop Mart
+        </h2>
         <p className="mt-1 text-sm">To continue please log in</p>
-        <div className="mt-5 lg:min-w-[380px]">
+        <div className="mt-5 w-full sm:w-auto sm:min-w-[380px]">
           <form onSubmit={handleSubmit(onSubmit)} method="post">
             <InputAndLabel
               classCss="focus:outline-none "
@@ -69,7 +71,7 @@ const Page = () => {
               isPassword
               text="Password"
             />
-            <Button classCss="mt-5 w-full" text="Log In" />
+            <Button type="submit" classCss="mt-5 w-full" text="Log In" />
           </form>
         </div>
         <div className="mt-5">

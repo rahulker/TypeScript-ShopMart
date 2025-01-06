@@ -53,7 +53,7 @@ export const cart = createSlice({
         0
       );
     },
-    handleCartBuyNow: (state, action) => {
+    handleCardBuyNow: (state, action) => {
       state.buyNow = {
         ...action.payload,
       };
@@ -61,9 +61,24 @@ export const cart = createSlice({
     handleBuyNowCart: (state) => {
       state.buyNow = state.item;
     },
+    handleSingleRemoveBuyNow: (state) => {
+      state.buyNow = {};
+    },
+    handleBuyNowCartRemove: (state) => {
+      state.buyNow = {};
+      state.totalItem = 0;
+      state.item = [];
+    },
   },
 });
 
-export const { handleAddItem, handleRmvItem } = cart.actions;
+export const {
+  handleAddItem,
+  handleRmvItem,
+  handleBuyNowCart,
+  handleBuyNowCartRemove,
+  handleSingleRemoveBuyNow,
+  handleCardBuyNow,
+} = cart.actions;
 const cartReducer = cart.reducer;
 export default cartReducer;

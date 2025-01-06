@@ -9,6 +9,7 @@ export interface props {
   otherLink?: boolean | string;
   onClick?: () => void;
   props?: unknown;
+  type: "submit" | "reset" | "button" | undefined;
 }
 
 export interface inputAndLabel {
@@ -20,7 +21,7 @@ export interface inputAndLabel {
   text?: string;
   name?: string;
   isPassword?: boolean;
+  type: string;
   classCss?: string;
   textStyle?: string;
-  type: string;
 }

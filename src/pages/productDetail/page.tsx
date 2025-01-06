@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import { useParams, useRouteLoaderData } from "react-router-dom";
+import { useNavigate, useParams, useRouteLoaderData } from "react-router-dom";
 import { handleSingleProduct } from "../../utils/apis/services/product";
 import { Button, Card } from "../../Components/exports";
 import { useDispatch } from "react-redux";
-import { handleAddItem } from "../../store/slices/cartSlice";
+import { handleAddItem, handleCardBuyNow } from "../../store/slices/cartSlice";
 import { successToast } from "../../utils/helper/toast";
 const Page = () => {
   const originalData = useRouteLoaderData("Root");
   const dispatch = useDispatch();
-  const [readMore, setReadMore] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [shuffleData, setShuffleData] = useState<unknown[]>([]);
   const { id } = useParams();
+  const navigate = useNavigate();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [data, setData] = useState<any>({});
 
@@ -32,8 +32,11 @@ const Page = () => {
     }
     getSingleProduct();
   }, [id]);
-  function handleReadMore() {
-    setReadMore((state) => !state);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function handleBuyNow(data: any) {
+    dispatch(handleCardBuyNow(data));
+    navigate("/buy-now");
+    window.scrollTo(0, 0);
   }
 
   function handleAddToCart() {
@@ -67,7 +70,7 @@ const Page = () => {
             </div>
             <div className="lg:mt-10 mt-4 flex items-center gap-4">
               <Button text="Add to cart" onClick={() => handleAddToCart()} />
-              <Button text="Buy now" isLink otherLink link="/buy-now" />
+              <Button text="Buy now" onClick={() => handleBuyNow(data)} />
             </div>
           </div>
         </div>
@@ -75,7 +78,7 @@ const Page = () => {
 
       <div className="mt-5">
         <h2 className="text-2xl font-bold ">Similar product</h2>
-        <div className="mt-4 grid grid-cols-4 gap-4">
+        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             shuffleData?.slice(0, 4).map((item: any) => (

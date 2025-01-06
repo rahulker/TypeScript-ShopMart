@@ -3,7 +3,7 @@ export interface logInForm {
   password: string;
 }
 
-export interface signInForm extends logInForm {
+export interface signUpForm extends logInForm {
   address: string;
   phoneNum: number;
   name: string;

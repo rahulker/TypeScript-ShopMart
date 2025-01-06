@@ -1,29 +1,43 @@
+import { UseFormRegister } from "react-hook-form";
+
 const Page = ({
-  isText,
-  type,
-  values,
-  error,
-  label,
-  name,
-  setValue,
+  isText = true,
+  type = "text",
+  values = "",
+  error = "",
+  label = "",
+  name = "",
+  textArea = false,
   register,
-}: Partial<textAndInput>) => {
-  const CommenDiv = "flex flex-col gap-2.5";
+}: Partial<TextAndInput>) => {
+  const CommonDiv = "flex flex-col gap-2.5";
+
   return isText ? (
-    <div className={CommenDiv}>
+    <div className={CommonDiv}>
       <h2 className="text-xl font-bold leading-5">{label}</h2>
       <p className="text-lg font-medium leading-4">{values}</p>
     </div>
   ) : (
-    <div className={CommenDiv}>
+    <div className={CommonDiv}>
       <label htmlFor={name}>{label}</label>
-      <input
-        type={type}
-        value={setValue ? setValue("") : ""}
-        name={name}
-        id={name}
-        {...(register ? register(name || "") : {})}
-      />
+      {textArea ? (
+        <textarea
+          className="p-2 border-black  border w-full rounded-md"
+          rows={4}
+          defaultValue={values}
+          id={name}
+          {...(register && name ? register(name) : {})}
+        ></textarea>
+      ) : (
+        <input
+          type={type}
+          className="p-2 border-black  border w-full rounded-md"
+          defaultValue={values}
+          id={name}
+          {...(register && name ? register(name) : {})}
+        />
+      )}
+
       {error && <p className="text-red-400">{error}</p>}
     </div>
   );
@@ -31,13 +45,14 @@ const Page = ({
 
 export default Page;
 
-interface textAndInput {
+interface TextAndInput {
   isText: boolean;
-  register: (name: string) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  register: UseFormRegister<any>;
   type: string;
   values: string | number;
   name: string;
-  setValue: (value: string) => undefined;
   label: string;
+  textArea?: boolean;
   error: string;
 }

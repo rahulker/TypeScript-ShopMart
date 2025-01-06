@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { rootState } from "../../store/store";
 import { Button, CartItem } from "../../Components/exports";
+import { handleBuyNowCart } from "../../store/slices/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const Page = () => {
   const cartData = useSelector((state: rootState) => state.cart.item);
@@ -9,6 +11,12 @@ const Page = () => {
     (total: number, item: any) => (total = item.price * item.quantity),
     0
   );
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  function handleBuyNow() {
+    dispatch(handleBuyNowCart());
+    navigate("/buy-now");
+  }
 
   return (
     <>
@@ -27,7 +35,7 @@ const Page = () => {
             </div>
             <hr className="mt-10 border-top border-black" />
             <div className="mt-5 flex items-center justify-end gap-9">
-              <Button otherLink isLink link="/buy-now" text="Buy now" />
+              <Button onClick={handleBuyNow} text="Buy now" />
               <p>Total: ${totalPrice.toFixed(2)}</p>
             </div>
           </>

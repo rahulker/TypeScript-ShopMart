@@ -11,11 +11,15 @@ export async function userAlreadyExists(
   navigate: any
 ) {
   const response = await handleGetAllUser();
-  const keyArr = Object.values(response) || "";
-  const currentUser = keyArr.filter(
-    (item: any) =>
-      item.email === userDetail.email && item.password === userDetail.password
-  );
+  const keyArr: any = response ? Object.values(response) || "" : "";
+  const currentUser =
+    keyArr.length == 0
+      ? ""
+      : keyArr.filter(
+          (item: any) =>
+            item.email === userDetail.email &&
+            item.password === userDetail.password
+        );
 
   if (page == "Login") {
     if (currentUser.length > 0) {

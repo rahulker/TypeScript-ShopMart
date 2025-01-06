@@ -7,8 +7,9 @@ const Page = ({
   otherLink,
   link,
   id,
+  type = "button",
   ...props
-}: props) => {
+}: Partial<props>) => {
   const commonCss = `py-3 text-center px-4 bg-black text-white hover:text-black hover:bg-white rounded-xl hover:drop-shadow-lg border border-black transition-all ${classCss}`;
   return isLink ? (
     <NavLink
@@ -20,7 +21,7 @@ const Page = ({
       {text}
     </NavLink>
   ) : (
-    <button className={commonCss} {...props}>
+    <button type={type} className={commonCss} {...props}>
       {text}
     </button>
   );

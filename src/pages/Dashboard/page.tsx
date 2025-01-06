@@ -8,16 +8,16 @@ const Page = () => {
   return (
     <>
       <div className="flex justify-between items-center">
-        <h2 className="font-bold text-2xl">Feature Product</h2>
+        <h2 className="font-bold md:text-2xl text-base">Feature Product</h2>
         <NavLink
           to="/product"
-          className="flex items-center gap-1.5 hover:font-bold"
+          className="flex items-center gap-1.5 text-base hover:font-bold"
         >
           View more
           <RxArrowRight />
         </NavLink>
       </div>
-      <div className="mt-4 grid grid-cols-4 grid-rows-2 gap-4">
+      <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {shuffle
           .slice(0, 8)
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
