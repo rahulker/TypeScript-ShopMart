@@ -58,7 +58,7 @@ const Page = () => {
   }
 
   const tagAttribute = {
-    className: "w-2/3",
+    className: "sm:w-2/3",
     ...(tagValue == "form" && { onSubmit: handleSubmit(onsubmit) }),
   };
 
