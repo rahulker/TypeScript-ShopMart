@@ -16,7 +16,11 @@ const Component = () => {
       <div className="container mx-auto px-0">
         <div className="flex flex-col md:flex-row md:justify-between px-[20px] lg:px-[50px]">
           <div className="mb-6 md:mb-0">
-            <NavLink className="flex items-center gap-1" to="/">
+            <NavLink
+              className="flex items-center gap-1"
+              to="/"
+              onClick={() => window.scrollTo(0, 0)}
+            >
               <CiShoppingCart size={50} />
               <div className="flex flex-col items-start ">
                 <h2 className="text-2xl font-medium">Shop</h2>

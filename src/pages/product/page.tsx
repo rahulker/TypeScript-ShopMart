@@ -43,7 +43,7 @@ const Page = () => {
         </h2>
         <div className="border px-2 gap-2  py-2 border-black rounded-lg md:w-auto flex items-center w-fit">
           <select
-            className="w-full"
+            className="w-full focus:outline-none cursor-pointer"
             onChange={(e) => handleSelectNewCategory(e)}
           >
             <option>All</option>

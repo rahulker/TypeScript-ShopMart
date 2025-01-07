@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { Button } from "../../exports";
+
 import { handleAddItem, handleRmvItem } from "../../../store/slices/cartSlice";
 import { successToast } from "../../../utils/helper/toast";
 
@@ -15,38 +15,40 @@ const Page = ({ item }: any) => {
     successToast("Cart updated successfully");
   }
   return (
-    <div className="grid grid-cols-3  justify-between gap-10 items-center px-4 py-5 border border-black rounded-lg">
-      {/* image */}
-      <div className="w-fit">
-        <img
-          src={item.image}
-          alt={item.title}
-          className="md:w-40 md:h-40 object-contain sm:w-1/4 w-1/2 mx-auto"
-        />
-      </div>
-      {/* item name */}
-      <div className="flex items-start flex-col gap-4 w-fit">
-        <h2 className="text-xl">{item.title}</h2>
-        <div>
-          <p>Price: ${item.price}</p>
-          <p>category: {item.category}</p>
+    <div className="grid md:grid-cols-4 grid-cols-1 items-center   mx-auto xl:gap-52 gap-5 border border-black md:px-8 md:py-5 px-4 py-2.5 rounded-lg shadow-sm">
+      <img
+        src={item.image}
+        alt={item.title}
+        className="md:w-40 md:h-40 object-contain sm:w-1/4 w-1/2 mx-auto"
+      />
+      <div className="flex items-start md:gap-4 gap-2 flex-col md:col-span-2">
+        <h2 className="xl:text-3xl lg:text-xl text-lg font-semibold">
+          {item.title}
+        </h2>
+        <div className="flex flex-col lg:flex-row lg:items-center lg:gap-5 gap-2.5 ">
+          <p className="text-xl font-medium">category: {item.category}</p>
+          <p className="text-xl font-medium">price: ₹{item.price}</p>
         </div>
       </div>
-      {/* increment and decrement */}
-      <div className="w-fit justify-self-end flex items-center gap-4">
-        <Button
-          text="-"
-          classCss="rounded-full px-5 cursor-pointer"
+      <div className="flex items-center justify-end md:justify-center gap-1.5 lg:gap-4 md:gap-2">
+        <button
+          type="button"
           onClick={() => handleRmvQuantity()}
-        />
-        <p className="px-5 py-2.5 border border-black rounded-lg">
-          {item?.quantity}
+          className="px-4 py-2 bg-black rounded-full text-white hover:bg-white hover:text-black border border-black transition-colors"
+        >
+          -
+        </button>
+        <p className="py-2 px-3 rounded-xl w-12 text-center border border-black ">
+          {item.quantity}
         </p>
-        <Button
-          text="+"
-          classCss="rounded-full px-5 cursor-pointer"
+
+        <button
+          type="button"
           onClick={() => handleAddQuantity()}
-        />
+          className="px-4 py-2 bg-black rounded-full text-white hover:bg-white hover:text-black border border-black transition-colors"
+        >
+          +
+        </button>
       </div>
     </div>
   );
