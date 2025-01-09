@@ -1,6 +1,4 @@
 import { NavLink } from "react-router-dom";
-import PropTypes from "prop-types";
-
 const SearchItem = ({ item, dispatch, handleShowModel }: searchItem) => {
   return (
     <NavLink
