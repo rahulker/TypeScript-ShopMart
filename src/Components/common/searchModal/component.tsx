@@ -1,10 +1,10 @@
 import { useDispatch } from "react-redux";
-import { handleHideModel } from "../../store/slices/common";
+import { handleHideModel } from "../../../store/slices/common";
 import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { useRouteLoaderData } from "react-router-dom";
 import { HiXMark } from "react-icons/hi2";
-import { SearchItem } from "../exports";
+import { SearchItem } from "../../exports";
 import { useDebounce } from "@uidotdev/usehooks";
 
 const Component = () => {
