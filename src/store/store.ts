@@ -3,10 +3,12 @@ import { persistStore, persistReducer } from "redux-persist";
 import cartReducer from "./slices/cartSlice";
 import storage from "redux-persist/lib/storage";
 import userReducer from "./slices/userSlice";
+import commonSliceReducer from "./slices/common";
 
 const reducer = combineReducers({
   cart: cartReducer,
   user: userReducer,
+  commmon: commonSliceReducer
 });
 
 const key = "user and cart detail";

@@ -24,7 +24,6 @@ const Page = ({
         <textarea
           className="p-2 border-black  border w-full rounded-md"
           rows={4}
-          defaultValue={values}
           id={name}
           {...(register && name ? register(name) : {})}
         ></textarea>
@@ -32,7 +31,6 @@ const Page = ({
         <input
           type={type}
           className="p-2 border-black  border w-full rounded-md"
-          defaultValue={values}
           id={name}
           {...(register && name ? register(name) : {})}
         />

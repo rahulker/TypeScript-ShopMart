@@ -10,3 +10,5 @@ export { default as InputAndLabel } from "./common/inputsAndLabel/page";
 export { default as InputAndText } from "./common/inputAndText/page";
 export { default as DeleteModel } from "./common/model/page";
 export { default as BuyNowCard } from "./common/buyNowCard/page";
+export {default as SearchModel } from "./searchModal/component"
+export {default as SearchItem } from "./searchItem/component"

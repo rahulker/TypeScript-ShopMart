@@ -6,6 +6,7 @@ import { RxAvatar } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { rootState } from "../../store/store";
 import { handleLogOut } from "../../store/slices/userSlice";
+import { handleShowModel } from "../../store/slices/common";
 const normalClass =
   "font-light text-base text-sm hover:font-bold drop-shadow-lg transition-all ";
 const activeCss = "font-semibold text-sm drop-shadow-lg";
@@ -18,11 +19,17 @@ const Component = () => {
     dispatch(handleLogOut());
     navigate("/");
   }
+  function showModel() {
+    dispatch(handleShowModel());
+  }
   return (
     <>
       <Logo />
       {/* search */}
-      <div className="bg-[#F0F5FF] grid grid-cols-[5%_95%]  items-center gap-4 px-4  lg:min-w-[400px]">
+      <div
+        className="bg-[#F0F5FF] grid grid-cols-[5%_95%] items-center gap-4 px-4  lg:min-w-[400px]"
+        onClick={() => showModel()}
+      >
         <CiSearch size={25} />
         <span className="border-l border-gray-300">
           <input
