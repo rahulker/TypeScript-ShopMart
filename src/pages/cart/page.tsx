@@ -20,7 +20,9 @@ const Page = () => {
 
   return (
     <>
-      <h2 className="text-4xl font-bold capitalize">your cart</h2>
+      <h2 className=" text-xl sm:text-2xl md:text-3xl font-bold capitalize">
+        your cart
+      </h2>
       <div className="mt-8">
         {cartData.length <= 0 ? (
           <p className="text-gray-400 text-center text-xl">

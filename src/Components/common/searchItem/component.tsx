@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NavLink } from "react-router-dom";
 const SearchItem = ({ item, dispatch, handleShowModel }: searchItem) => {
   return (
@@ -15,7 +16,7 @@ const SearchItem = ({ item, dispatch, handleShowModel }: searchItem) => {
       <div>
         <h2 className="des md:text-md text-sm ">{item.title}</h2>
         <p className="md:text-md text-sm"> category: {item.category}</p>
-        <p className="md:text-md text-sm"> price: ₹{item.price}</p>
+        <p className="md:text-md text-sm"> price: ${item.price}</p>
       </div>
     </NavLink>
   );

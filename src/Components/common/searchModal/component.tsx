@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useDispatch } from "react-redux";
 import { handleHideModel } from "../../../store/slices/common";
 import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
@@ -11,7 +12,7 @@ const Component = () => {
   const dispatch = useDispatch();
   const [SearchData, setSearchData] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const deBoundSearch = useDebounce(SearchData, 1000); // Debounced value
+  const deBoundSearch = useDebounce(SearchData, 1000);
   const data = useRouteLoaderData("Root");
 
   let searchDataArr: any[] = [];
@@ -28,13 +29,6 @@ const Component = () => {
   }
 
   useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "scroll";
-    };
-  }, []);
-
-  useEffect(() => {
     const handleKeyDownTyped = (e: KeyboardEvent) => handleKeyDown(e);
     document.addEventListener(
       "keydown",
@@ -47,9 +41,11 @@ const Component = () => {
       );
     };
   }, []);
+
   useEffect(() => {
     if (deBoundSearch !== "") {
       setLoading(false);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       searchDataArr = data?.filter(
         (item: any) =>
           item.title.toLowerCase().includes(deBoundSearch.toLowerCase()) // Search using debounced value
@@ -83,7 +79,7 @@ const Component = () => {
             <HiXMark size={25} />
           </div>
         </div>
-        <div className="mt-4">
+        <div className="mt-4 !overflow-y-scroll">
           {loading ? (
             <p className="text-center text-xl mt-3">Searching...</p>
           ) : searchDataArr?.length > 0 ? (
