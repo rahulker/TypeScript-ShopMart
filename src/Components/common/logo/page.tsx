@@ -5,8 +5,8 @@ const Page = () => {
     <NavLink to="/" className="flex items-center ">
       <CiShoppingCart size={50} />
       <div className="flex flex-col items-start gap-0">
-        <h2 className="text-2xl font-medium">Shop</h2>
-        <p className="text-xl -mt-1">Mart</p>
+        <h2 className="md:text-2xl text-xl font-medium">Shop</h2>
+        <p className="md:text-xl text-lg -mt-1">Mart</p>
       </div>
     </NavLink>
   );
