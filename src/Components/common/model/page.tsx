@@ -3,6 +3,7 @@ import { Button } from "../../exports";
 import { useNavigate } from "react-router-dom";
 import { handleDeleteUser } from "../../../utils/apis/user";
 import { handleLogOut } from "../../../store/slices/userSlice";
+import { useEffect } from "react";
 
 const Page = ({
   setShowDeleteModal,
@@ -18,6 +19,12 @@ const Page = ({
     handleDeleteUser(id);
     navigate("/");
   }
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "scroll";
+    };
+  }, []);
   return (
     <div className="modal__backdrop flex flex-col px-3 justify-center items-center">
       <div className="modal__container">

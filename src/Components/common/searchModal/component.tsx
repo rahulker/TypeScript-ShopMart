@@ -11,26 +11,29 @@ const Component = () => {
   const dispatch = useDispatch();
   const [SearchData, setSearchData] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const deBoundSearch = useDebounce(SearchData, 1000);
+  const deBoundSearch = useDebounce(SearchData, 1000); // Debounced value
   const data = useRouteLoaderData("Root");
+
   let searchDataArr: any[] = [];
+
   function handleKeyDown(e: KeyboardEvent) {
-    if (e.key === "Escaped") {
+    if (e.key === "Escape") {
       dispatch(handleHideModel());
     }
   }
+
   function handleChangeInput(e: ChangeEvent<HTMLInputElement>) {
     setLoading(true);
     setSearchData(e.target.value);
-
-    if (deBoundSearch) {
-      console.log(e.target.value);
-      searchDataArr = data?.filter((item: any) =>
-        item.title.toLowerCase().includes(SearchData)
-      );
-    }
-    setLoading(false);
   }
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "scroll";
+    };
+  }, []);
+
   useEffect(() => {
     const handleKeyDownTyped = (e: KeyboardEvent) => handleKeyDown(e);
     document.addEventListener(
@@ -43,13 +46,25 @@ const Component = () => {
         handleKeyDownTyped as unknown as EventListener
       );
     };
-  });
+  }, []);
+  useEffect(() => {
+    if (deBoundSearch !== "") {
+      setLoading(false);
+      searchDataArr = data?.filter(
+        (item: any) =>
+          item.title.toLowerCase().includes(deBoundSearch.toLowerCase()) // Search using debounced value
+      );
+    } else {
+      setLoading(false);
+      searchDataArr = [];
+    }
+  }, [deBoundSearch, data]);
 
   return (
     <div className="modal__backdrop !z-[100]">
       <div className="modal__container">
         <div className="grid sm:grid-cols-[91%_5%] grid-cols-[auto_5%] gap-6 items-center">
-          <div className="bg-[#F0F5FF] grid grid-cols-[10%_auto] sm:grid-cols-[5%_93.5%] items-center gap-2 pl-2.5  lg:min-w-[400px]">
+          <div className="bg-[#F0F5FF] grid grid-cols-[10%_auto] sm:grid-cols-[5%_93.5%] items-center gap-2 pl-2.5 lg:min-w-[400px]">
             <CiSearch size={25} />
             <span className="border-l border-gray-300">
               <input
@@ -70,9 +85,9 @@ const Component = () => {
         </div>
         <div className="mt-4">
           {loading ? (
-            <p>Searching...</p>
+            <p className="text-center text-xl mt-3">Searching...</p>
           ) : searchDataArr?.length > 0 ? (
-            searchDataArr?.slice(0, 5).map((item: any) => {
+            searchDataArr?.slice(0, 4).map((item: any) => {
               return (
                 <SearchItem
                   item={item}
@@ -83,7 +98,7 @@ const Component = () => {
               );
             })
           ) : (
-            data?.slice(0, 5).map((item: any) => {
+            data?.slice(0, 4).map((item: any) => {
               return (
                 <SearchItem
                   item={item}
