@@ -14,8 +14,7 @@ const Component = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const deBoundSearch = useDebounce(SearchData, 1000);
   const data = useRouteLoaderData("Root");
-
-  let searchDataArr: any[] = [];
+  const [searchDataArr, setSearchDataArr] = useState<any[]>([]);
 
   function handleKeyDown(e: KeyboardEvent) {
     if (e.key === "Escape") {
@@ -53,18 +52,19 @@ const Component = () => {
     if (deBoundSearch !== "") {
       setLoading(false);
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      searchDataArr = data?.filter((item: any) =>
+      const newData = data?.filter((item: any) =>
         item.title.toLowerCase().includes(deBoundSearch.toLowerCase())
       );
+      setSearchDataArr(newData);
     } else {
       setLoading(false);
-      searchDataArr = [];
+      setSearchDataArr([]);
     }
   }, [deBoundSearch, data]);
 
   return (
-    <div className="modal__backdrop !z-[100]">
-      <div className="modal__container h-screen md:h-auto">
+    <div className="modal__backdrop !z-[100] h-screen">
+      <div className="modal__container  md:h-auto">
         <div className="grid sm:grid-cols-[91%_5%] grid-cols-[auto_10%] gap-6 items-center">
           <div className="bg-[#F0F5FF] grid grid-cols-[10%_auto] sm:grid-cols-[5%_93.5%] items-center gap-2 pl-2.5 lg:min-w-[400px]">
             <CiSearch size={25} />

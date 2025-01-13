@@ -15,6 +15,7 @@ const Page = () => {
   const navigate = useNavigate();
   function handleBuyNow() {
     dispatch(handleBuyNowCart());
+    window.scrollTo(0, 0);
     navigate("/buy-now");
   }
 

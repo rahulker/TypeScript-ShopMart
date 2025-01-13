@@ -18,7 +18,7 @@ const Page = ({ item }: any) => {
         alt={item.title}
         className="mx-auto  w-[200px] h-[200px] object-contain"
       />
-      <div>
+      <div className="w-full">
         <h2 className="md:text-xl sm:w-[260px] w-auto text-lg des leading-[30px]">
           {item.title}
         </h2>

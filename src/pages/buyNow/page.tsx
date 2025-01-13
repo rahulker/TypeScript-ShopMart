@@ -57,7 +57,7 @@ const Page = () => {
   }
 
   return (
-    <div className="grid grid-cols-[60%_auto] gap-5">
+    <div className="grid lg:grid-cols-[60%_auto] gap-5">
       <main>
         {arr && <h2 className="mb-2 text-xl">List of product</h2>}
         <div className="flex items-center flex-col gap-4 max-h-[600px] overflow-y-scroll">
@@ -68,15 +68,15 @@ const Page = () => {
         <div>
           <h2 className="text-2xl">Deliver To:</h2>
           <div className="ml-4 mt-4">
-            <p className="text-xl capitalize">Name: {userData.name}</p>
+            <p className="text-xl capitalize">Name: {userData.name || "N/A"}</p>
             <p className="text-xl capitalize mt-2">
-              Phone number: {userData.phoneNum}
+              Phone number: {userData.phoneNum || "N/A"}
             </p>
-            <p className="text-xl mt-2">Email: {userData.email}</p>
-            <p className="text-xl mt-2">Address: {userData.address}</p>
+            <p className="text-xl mt-2">Email: {userData.email || "N/A"}</p>
+            <p className="text-xl mt-2">Address: {userData.address || "N/A"}</p>
           </div>
           <div className="flex items-center gap-5 ml-4 mt-8">
-            <p>Total Price: ₹{totalPrize.toFixed(2)}</p>
+            <p>Total Price: ${totalPrize.toFixed(2)}</p>
             <Button
               text="Pay Now"
               onClick={

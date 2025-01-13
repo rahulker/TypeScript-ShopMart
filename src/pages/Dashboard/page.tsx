@@ -87,6 +87,7 @@ const Page = () => {
           <h2 className="font-bold md:text-2xl text-base">Feature Product</h2>
           <NavLink
             to="/product"
+            onClick={() => window.scrollTo(0, 0)}
             className="flex items-center gap-1.5 text-base hover:font-bold"
           >
             View more

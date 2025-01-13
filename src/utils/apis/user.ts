@@ -4,7 +4,7 @@ import { signUpForm } from "../interfaces/form";
 const URL = import.meta.env.VITE_USER_BASE_API;
 const USER_DB = URL + ".json";
 
-export async function handleRegisterUser(userDetail: signUpForm) {
+export async function handleRegisterUser(userDetail: Partial<signUpForm>) {
   try {
     const response = await axios.post(USER_DB, userDetail);
     return response.data;

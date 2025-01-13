@@ -22,7 +22,7 @@ const Page = ({ item, data }: any) => {
           </p>
           <p className="sm:text-base text-sm md:text-lg">
             Price:
-            <span className="text-base capitalize"> ₹{item?.price}</span>
+            <span className="text-base capitalize"> ${item?.price}</span>
           </p>
         </div>
         <p className="sm:text-base text-sm md:text-lg des max-w-[600px]">
