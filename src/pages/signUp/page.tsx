@@ -11,6 +11,7 @@ import { handleAddUserDetail, handleLogIn } from "../../store/slices/userSlice";
 import { rootState } from "../../store/store";
 import { useEffect, useState } from "react";
 import { userAlreadyExists } from "../../utils/helper/userLogin";
+import md5 from "md5";
 
 const Page = () => {
   const dispatch = useDispatch();
@@ -43,7 +44,15 @@ const Page = () => {
 
   async function onsubmit() {
     setUserExits(false);
-    const userDetail = getValues();
+    const { password, address, phoneNum, email, name, id } = getValues();
+    const userDetail = {
+      password: md5(password),
+      address,
+      phoneNum,
+      email,
+      name,
+      id,
+    };
     userDetail.id = Math.ceil(Math.random() * 100);
     const res = await userAlreadyExists("", userDetail, dispatch, navigate);
     if (res) {

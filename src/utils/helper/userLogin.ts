@@ -11,15 +11,11 @@ export async function userAlreadyExists(
   navigate: any
 ) {
   const response = await handleGetAllUser();
-  const keyArr: any = response ? Object.values(response) || "" : "";
+  const keyArr: any = response ? Object.values(response) : "";
   const currentUser =
     keyArr.length == 0
       ? ""
-      : keyArr.filter(
-          (item: any) =>
-            item.email === userDetail.email &&
-            item.password === userDetail.password
-        );
+      : keyArr.filter((item: any) => item.email === userDetail.email);
 
   if (page == "Login") {
     if (currentUser.length > 0) {
@@ -31,7 +27,7 @@ export async function userAlreadyExists(
       return true;
     }
   } else {
-    if (currentUser) {
+    if (currentUser.length != 0) {
       return false;
     } else {
       return true;

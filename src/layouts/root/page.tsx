@@ -36,7 +36,7 @@ const Page = () => {
       />
       {showModal ? <SearchModel /> : <></>}
       <Navigation />
-      <section className="xl:mx-20 xl:my-10 lg:mx-10 lg:my-5 mx-4 my-5">
+      <section className="2xl:mx-20 xl:my-10 lg:mx-10 lg:my-5 mx-4 my-5">
         <Outlet />
       </section>
       <Footer />

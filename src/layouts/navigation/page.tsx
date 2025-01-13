@@ -28,7 +28,11 @@ const Page = () => {
   }
 
   useEffect(() => {
-    document.body.style.overflow = "hidden";
+    if (showMenu) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "scroll";
+    }
     return () => {
       document.body.style.overflow = "scroll";
     };
@@ -45,24 +49,28 @@ const Page = () => {
       </nav>
       <nav className="flex lg:hidden relative items-center justify-between p-2 md:p-4 md:py-2 bg-white drop-shadow-lg">
         <Logo />
-        <div className="flex items-center gap-2.5">
-          <CiSearch size={25} onClick={handleShowModelSearch} />
+        <div className="flex items-center gap-3.5">
+          <CiSearch
+            size={22}
+            onClick={handleShowModelSearch}
+            className="cursor-pointer"
+          />
           {showMenu ? (
             <HiXMark
               className="cursor-pointer"
               onClick={handleShowMenu}
-              size={25}
+              size={22}
             />
           ) : (
             <CiMenuBurger
               className="cursor-pointer"
               onClick={handleShowMenu}
-              size={25}
+              size={22}
             />
           )}
           {isLogin && (
-            <NavLink to="/user-profile">
-              <RxAvatar size={25} />
+            <NavLink to="/user-profile" className="cursor-pointer">
+              <RxAvatar size={22} />
             </NavLink>
           )}
         </div>
@@ -72,7 +80,7 @@ const Page = () => {
           showMenu ? "right-0" : "right-full"
         } transition-all`}
       >
-        <div className="px-4 flex flex-col items-start pt-4 gap-5 bg-white shadow-lg w-full">
+        <div className="px-4 z-50 flex flex-col items-start pt-4 gap-5 bg-white shadow-lg w-full">
           {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             navigationLabel.map((item: any) => (
@@ -88,19 +96,23 @@ const Page = () => {
           }
           {!isLogin ? (
             <NavLink
-              className="w-full"
+              className="w-full text-left"
               onClick={() => setShowMenu(false)}
               to="/login"
             >
               Log in
             </NavLink>
           ) : (
-            <button className="w-full" onClick={handleLogUserOut} type="button">
+            <button
+              className="w-full text-left"
+              onClick={handleLogUserOut}
+              type="button"
+            >
               Log out
             </button>
           )}
         </div>
-        <div className={`${showMenu && "bg-black opacity-30"} `}></div>
+        <div className={`${showMenu && "bg-black z-50 opacity-30"} `}></div>
       </div>
     </>
   );

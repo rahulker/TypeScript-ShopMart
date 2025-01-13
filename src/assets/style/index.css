@@ -69,3 +69,13 @@ input:focus {
   padding: 15px;
   width: 700px;
 }
+
+@media screen and (max-width: 767px) {
+  .modal__backdrop {
+    overflow: scroll;
+  }
+  .modal__container {
+    margin: 0;
+    width: 100%;
+  }
+}

@@ -15,7 +15,7 @@ export const signUpValidation = object({
       return !!value && value.toString().length === 10;
     }),
   confirmPassword: string()
-    .required("confirm password is require")
-    .oneOf([ref("password")], "Confirm password dose not match"),
+    .required("confirm password is required")
+    .oneOf([ref("password")], "passwords dose not match"),
   address: string().required("Address is require"),
 });

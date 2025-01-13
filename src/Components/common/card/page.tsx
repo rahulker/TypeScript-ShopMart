@@ -22,7 +22,7 @@ const Page = ({ item }: any) => {
         <h2 className="md:text-xl sm:w-[260px] w-auto text-lg des leading-[30px]">
           {item.title}
         </h2>
-        <p className="des text-sm smLw-[260px] des sm:w-auto mt-2 leading-[18px]">
+        <p className="des text-sm w-[260px] des sm:w-auto mt-2 leading-[18px]">
           {item.description}
         </p>
         <div className="flex items-start flex-col gap-2.5 mt-4">

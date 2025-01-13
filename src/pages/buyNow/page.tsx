@@ -7,13 +7,14 @@ import {
   handleRmvItem,
   handleSingleRemoveBuyNow,
 } from "../../store/slices/cartSlice";
-import { successToast } from "../../utils/helper/toast";
+import { errorToast, successToast } from "../../utils/helper/toast";
 
 const Page = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const buyNowDetail: any = useSelector(
     (state: rootState) => state.cart.buyNow
   );
+  const isLogin = useSelector((state: rootState) => state.user.isLogin);
   const userData = useSelector((state: rootState) => state.user.userDetail);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -34,15 +35,25 @@ const Page = () => {
   );
 
   function buyCart() {
-    dispatch(handleBuyNowCartRemove());
-    successToast("Payment Successful");
-    navigate("/");
+    if (isLogin) {
+      dispatch(handleBuyNowCartRemove());
+      successToast("Payment Successful");
+      navigate("/");
+    } else {
+      errorToast("Please login");
+      navigate("/login");
+    }
   }
   function handleBuySingleItem() {
-    dispatch(handleSingleRemoveBuyNow());
-    dispatch(handleRmvItem(buyNowDetail));
-    successToast("Payment Successful");
-    navigate("/");
+    if (isLogin) {
+      dispatch(handleSingleRemoveBuyNow());
+      dispatch(handleRmvItem(buyNowDetail));
+      successToast("Payment Successful");
+      navigate("/");
+    } else {
+      errorToast("please login");
+      navigate("/login");
+    }
   }
 
   return (

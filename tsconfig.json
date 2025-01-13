@@ -1,7 +1,12 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react-jsx", // Adjust this based on your React version
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": ["src"], // Include your source code directory
+  "exclude": ["node_modules"]
 }

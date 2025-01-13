@@ -6,7 +6,7 @@ const SearchItem = ({ item, dispatch, handleShowModel }: searchItem) => {
       to={`/product/${item.id}`}
       key={item.id}
       onClick={() => dispatch(handleShowModel())}
-      className="lg:mt-5 mt-2 border-black border py-2 px-4 rounded-lg grid sm:grid-cols-[10%_auto] md:grid-cols-[10%_auto] grid-cols-1 gap-5 hover:shadow-lg hover:transition-shadow"
+      className="lg:mt-5 mt-2 border-black border py-2 px-4 rounded-lg grid sm:grid-cols-[10%_auto] md:grid-cols-[10%_auto] grid-cols-1 gap-5 hover:shadow-lg hover:transition-shadow transition-all"
     >
       <img
         src={item.image}

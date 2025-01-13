@@ -10,7 +10,7 @@ const Page = ({
   type = "button",
   ...props
 }: Partial<props>) => {
-  const commonCss = `py-3 text-center px-4 bg-black text-white hover:text-black hover:bg-white rounded-xl hover:drop-shadow-lg border border-black transition-all ${classCss}`;
+  const commonCss = `py-3 text-center focus:outline-none px-4 bg-black text-white hover:text-black hover:bg-white rounded-xl hover:drop-shadow-lg border border-black transition-all ${classCss}`;
   return isLink ? (
     <NavLink
       to={otherLink ? link || "" : `/product/${id}`}

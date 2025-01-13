@@ -8,5 +8,5 @@ export interface signUpForm extends logInForm {
   phoneNum: number;
   name: string;
   id?: number | string;
-  confirmPassword: string;
+  confirmPassword?: string;
 }

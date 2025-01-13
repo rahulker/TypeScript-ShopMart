@@ -58,7 +58,7 @@ const Page = () => {
   }
 
   const tagAttribute = {
-    className: "sm:w-2/3",
+    className: "sm:w-2/3 w-full",
     ...(tagValue == "form" && { onSubmit: handleSubmit(onsubmit) }),
   };
 
@@ -71,7 +71,7 @@ const Page = () => {
         />
       )}
       <div className="w-full gap-8 flex flex-col items-center justify-center">
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center w-full sm:w-fit">
           <RxAvatar size={50} />
           <div>
             <h2 className="mt-2 md:text-2xl sm:text-xl text-base font-bold">
