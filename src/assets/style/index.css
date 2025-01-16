@@ -25,6 +25,7 @@
 .des {
   overflow: hidden;
   -webkit-line-clamp: 2;
+  width: 100%;
   -webkit-box-orient: vertical;
   line-clamp: 2;
   display: -webkit-box;

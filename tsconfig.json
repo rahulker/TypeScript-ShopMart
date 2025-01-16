@@ -3,10 +3,12 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "jsx": "react-jsx", // Adjust this based on your React version
+    "jsx": "react-jsx",
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "lib": ["ES2015", "DOM"],
+    "target": "ES2015" 
   },
-  "include": ["src"], // Include your source code directory
+  "include": ["src"],
   "exclude": ["node_modules"]
 }

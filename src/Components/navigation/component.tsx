@@ -11,8 +11,12 @@ const normalClass =
   "font-light text-base text-sm hover:font-bold drop-shadow-lg transition-all ";
 const activeCss = "font-semibold text-sm drop-shadow-lg";
 const Component = () => {
-  const isLogin = useSelector((state: rootState) => state.user.isLogin);
-  const totalItem = useSelector((state: rootState) => state.cart.totalItem);
+  const isLogin: boolean = useSelector(
+    (state: rootState) => state.user.isLogin
+  );
+  const totalItem: number = useSelector(
+    (state: rootState) => state.cart.totalItem
+  );
   const navigate = useNavigate();
   const dispatch = useDispatch();
   function handleLogOutUser() {

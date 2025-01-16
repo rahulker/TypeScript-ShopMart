@@ -4,9 +4,32 @@ import { Toaster } from "react-hot-toast";
 import { Footer, SearchModel } from "../../Components/exports";
 import { useSelector } from "react-redux";
 import { rootState } from "../../store/store";
+import { useEffect, useState } from "react";
 
 const Page = () => {
+  const [applyMargin, setApplyMargin] = useState<boolean>(true);
+  const [currentwidth, setCurrentwidth] = useState<number>(0);
   const showModal = useSelector((state: rootState) => state.commmon.showModal);
+  useEffect(() => {
+    handleGetBrowserWidth();
+    window.addEventListener("resize", handleGetBrowserWidth);
+    return () => {
+      window.removeEventListener("resize", handleGetBrowserWidth);
+    };
+  }, []);
+
+  function handleGetBrowserWidth() {
+    setCurrentwidth(window.innerWidth);
+  }
+
+  useEffect(() => {
+    if (currentwidth >= 1023) {
+      setApplyMargin(true);
+    } else {
+      setApplyMargin(false);
+    }
+  }, []);
+
   return (
     <>
       <Toaster
@@ -22,7 +45,7 @@ const Page = () => {
             background: "#ffffff",
             color: "black",
             fontWeight: "600",
-            marginTop: "58px",
+            marginTop: applyMargin ? "58px" : "0",
             fontSize: "12px",
           },
 
