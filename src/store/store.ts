@@ -8,7 +8,7 @@ import commonSliceReducer from "./slices/common";
 const reducer = combineReducers({
   cart: cartReducer,
   user: userReducer,
-  commmon: commonSliceReducer
+  common: commonSliceReducer,
 });
 
 const key = "user and cart detail";

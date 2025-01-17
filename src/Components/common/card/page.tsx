@@ -35,8 +35,17 @@ const Page = ({ item }: any) => {
         </div>
       </div>
       <div className="flex items-center gap-2 w-full">
-        <Button isLink id={item.id} text="view more" classCss="w-full" />
-        <Button text="Buy now" onClick={handleBuyNow} classCss="w-full" />
+        <Button
+          isLink
+          id={item.id}
+          text="view more"
+          classCss="w-full !rounded-lg"
+        />
+        <Button
+          text="Buy now"
+          onClick={handleBuyNow}
+          classCss="w-full !rounded-lg"
+        />
       </div>
     </div>
   );

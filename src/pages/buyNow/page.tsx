@@ -75,7 +75,7 @@ const Page = () => {
             <p className="text-xl mt-2">Email: {userData.email || "N/A"}</p>
             <p className="text-xl mt-2">Address: {userData.address || "N/A"}</p>
           </div>
-          <div className="flex items-center gap-5 ml-4 mt-8">
+          <div className="flex items-start sm:items-center flex-col sm:flex-row gap-5 ml-4 mt-8">
             <p>Total Price: ${totalPrize.toFixed(2)}</p>
             <Button
               text="Pay Now"

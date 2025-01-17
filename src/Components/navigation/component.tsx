@@ -21,6 +21,7 @@ const Component = () => {
   const dispatch = useDispatch();
   function handleLogOutUser() {
     dispatch(handleLogOut());
+    window.scrollTo(0, 0);
     navigate("/");
   }
   function showModel() {
@@ -52,6 +53,7 @@ const Component = () => {
             }
             key={item.id}
             to={item.path}
+            onClick={() => window.scrollTo(0, 0)}
           >
             {item.name}
             {item.name === "Cart" ? `(${totalItem})` : ""}
@@ -68,7 +70,11 @@ const Component = () => {
           >
             Log out
           </button>
-          <NavLink to="/user-profile" className="flex items-center gap-2">
+          <NavLink
+            to="/user-profile"
+            className="flex items-center gap-2"
+            onClick={() => window.scrollTo(0, 0)}
+          >
             <RxAvatar size={25} />
           </NavLink>
         </div>
@@ -78,6 +84,7 @@ const Component = () => {
           className={({ isActive }: { isActive: boolean }) =>
             isActive ? activeCss : normalClass
           }
+          onClick={() => window.scrollTo(0, 0)}
         >
           Log in
         </NavLink>

@@ -155,7 +155,11 @@ const Page = () => {
           <div className="text-center mt-5">
             <p>
               Already have an account?{" "}
-              <NavLink to="/login" className="text-blue-500 underline">
+              <NavLink
+                to="/login"
+                className="text-blue-500 underline"
+                onClick={() => window.scrollTo(0, 0)}
+              >
                 signIn
               </NavLink>
             </p>

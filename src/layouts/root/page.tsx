@@ -8,8 +8,8 @@ import { useEffect, useState } from "react";
 
 const Page = () => {
   const [applyMargin, setApplyMargin] = useState<boolean>(true);
-  const [currentwidth, setCurrentwidth] = useState<number>(0);
-  const showModal = useSelector((state: rootState) => state.commmon.showModal);
+  const [currentWidth, setCurrentWidth] = useState<number>(0);
+  const showModal = useSelector((state: rootState) => state.common.showModal);
   useEffect(() => {
     handleGetBrowserWidth();
     window.addEventListener("resize", handleGetBrowserWidth);
@@ -19,16 +19,16 @@ const Page = () => {
   }, []);
 
   function handleGetBrowserWidth() {
-    setCurrentwidth(window.innerWidth);
+    setCurrentWidth(window.innerWidth);
   }
 
   useEffect(() => {
-    if (currentwidth >= 1023) {
+    if (currentWidth >= 1023) {
       setApplyMargin(true);
     } else {
       setApplyMargin(false);
     }
-  }, []);
+  }, [currentWidth]);
 
   return (
     <>

@@ -77,7 +77,11 @@ const Page = () => {
         <div className="mt-5">
           <p>
             Don't have an account?{" "}
-            <NavLink to="/signup" className="text-blue-600 underline ">
+            <NavLink
+              to="/signup"
+              className="text-blue-600 underline "
+              onClick={() => window.scrollTo(0, 0)}
+            >
               SignUp
             </NavLink>
           </p>

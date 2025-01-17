@@ -23,6 +23,7 @@ const Page = () => {
 
   function handleLogUserOut() {
     setShowMenu(false);
+    window.scrollTo(0, 0);
     dispatch(handleLogOut());
     navigate("/");
   }
@@ -86,7 +87,10 @@ const Page = () => {
             navigationLabel.map((item: any) => (
               <NavLink
                 to={item.path}
-                onClick={() => setShowMenu(false)}
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                  setShowMenu(false);
+                }}
                 className="w-full"
                 key={item.id}
               >
@@ -97,7 +101,10 @@ const Page = () => {
           {!isLogin ? (
             <NavLink
               className="w-full text-left"
-              onClick={() => setShowMenu(false)}
+              onClick={() => {
+                window.scrollTo(0, 0);
+                setShowMenu(false);
+              }}
               to="/login"
             >
               Log in
