@@ -8,11 +8,11 @@ const Page = ({ item }: any) => {
   const dispatch = useDispatch();
   function handleAddQuantity() {
     dispatch(handleAddItem(item));
-    successToast("Cart updated successfully");
+    successToast("Cart Updated Successfully");
   }
   function handleRmvQuantity() {
     dispatch(handleRmvItem(item));
-    successToast("Cart updated successfully");
+    successToast("Cart Updated Successfully");
   }
   return (
     <div className="grid md:grid-cols-4 grid-cols-1 items-center   mx-auto xl:gap-52 gap-5 border border-black md:px-8 md:py-5 px-4 py-2.5 rounded-lg shadow-sm">

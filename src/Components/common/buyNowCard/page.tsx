@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Page = ({ item, data }: any) => {
   return (
-    <div className="sm:p-1.5 py-4 px-2.5 md:px-5 border border-black rounded-md grid  grid-cols-1 lg:grid-cols-[25%_auto]  items-center gap-10">
+    <div className="sm:p-1.5 sm:py-5 w-full py-4 px-2.5 md:px-5 border border-black rounded-md grid  grid-cols-1 lg:grid-cols-[25%_auto]  items-center gap-10">
       <div>
         <img
           src={item?.image}

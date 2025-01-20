@@ -1,8 +1,11 @@
 import { CiShoppingCart } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
-const Page = () => {
+const Page = ({ onShowMenu }: { onShowMenu: (action: any) => void }) => {
+  function handleOnClick() {
+    onShowMenu(false);
+  }
   return (
-    <NavLink to="/" className="flex items-center ">
+    <NavLink to="/" onClick={handleOnClick} className="flex items-center ">
       <CiShoppingCart size={50} />
       <div className="flex flex-col items-start gap-0">
         <h2 className="md:text-2xl text-xl font-medium">Shop</h2>

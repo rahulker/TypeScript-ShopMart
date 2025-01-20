@@ -49,7 +49,7 @@ const Page = () => {
         <NavHeader />
       </nav>
       <nav className="flex lg:hidden relative items-center justify-between p-2 md:p-4 md:py-2 bg-white drop-shadow-lg">
-        <Logo />
+        <Logo onShowMenu={setShowMenu} />
         <div className="flex items-center gap-3.5">
           <CiSearch
             size={22}

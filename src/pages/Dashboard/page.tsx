@@ -16,7 +16,10 @@ const Page = () => {
   const navigationNextRef = useRef(null);
   useEffect(() => {
     if (navigationPrevRef.current && navigationNextRef.current) {
-      const swiperInstance = document.querySelector(".swiper")?.swiper;
+      const swiperElement = document.querySelector(".swiper") as HTMLElement & {
+        swiper: any;
+      };
+      const swiperInstance = swiperElement?.swiper;
       if (swiperInstance) {
         swiperInstance.params.navigation.prevEl = navigationPrevRef.current;
         swiperInstance.params.navigation.nextEl = navigationNextRef.current;

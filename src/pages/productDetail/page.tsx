@@ -40,7 +40,7 @@ const Page = () => {
   }
 
   function handleAddToCart() {
-    successToast("Item added to cart");
+    successToast("Item Added To Cart");
     dispatch(handleAddItem(data));
   }
 
