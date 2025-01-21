@@ -1,6 +1,6 @@
 import { CiShoppingCart } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
-const Page = ({ onShowMenu }: { onShowMenu: (action: any) => void }) => {
+const Page = ({ onShowMenu }: { onShowMenu: (action: unknown) => void }) => {
   function handleOnClick() {
     onShowMenu(false);
   }
