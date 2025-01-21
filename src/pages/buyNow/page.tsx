@@ -68,12 +68,12 @@ const Page = () => {
         <div>
           <h2 className="text-2xl">Deliver To:</h2>
           <div className="ml-4 mt-4">
-            <p className="text-xl capitalize">Name: {userData.name || "N/A"}</p>
+            <p className="text-xl capitalize">Name: {userData.name}</p>
             <p className="text-xl capitalize mt-2">
-              Phone number: {userData.phoneNum || "N/A"}
+              Phone number: {userData.phoneNum}
             </p>
-            <p className="text-xl mt-2">Email: {userData.email || "N/A"}</p>
-            <p className="text-xl mt-2">Address: {userData.address || "N/A"}</p>
+            <p className="text-xl mt-2">Email: {userData.email}</p>
+            <p className="text-xl mt-2">Address: {userData.address}</p>
           </div>
           <div className="flex items-start sm:items-center flex-col sm:flex-row gap-5 ml-4 mt-8">
             <p>Total Price: ${totalPrize.toFixed(2)}</p>
